@@ -1,21 +1,172 @@
 <html>
 <head>
 	<meta charset="utf-8">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-  $("#btn1").click(function(){
-    $("div").data("greeting", "Hello World");
-  });
-  $("#btn2").click(function(){
-    alert($("div").data("greeting"));
-  });
-});
-</script>
+	<!--meta:用来在HTML文档中模拟HTTP协议的响应头报文.
+	    charset:属性规定 HTML 文档的字符编码。提示：charset
+	    属性可以通过任意元素上的 lang 属性来重写。
+	    utf-8:是一种字符编码，除此之外在国内网站常用的还有GB2312和GBK。
+	    GB2312和GBK主要用于汉字编码，utf-8是国际编码，实用性比较强。
+	-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--X-UA-Compatible:来设置IE浏览器兼容模式.
+        IE=edge,chrome=1:如果支持Google Chrome Frame(谷歌内嵌浏览器框架GCF)，则使用GCF渲染；
+        如果系统安装ie8或以上版本，则使用最高版本ie渲染；否则，这个设定可以忽略。
+    -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--viewport:显示窗口.
+        width=device-width, initial-scale=1：宽度是设备(即客户端)的宽度，显示的文字和图形按1:1显示。
+    -->
+	<link rel="shortcut icon" href="static/img/favicon.ico">
+    <!--link：定义文档与外部资源的关系，最常见用途是链接样式表.
+        属性：rel:规定当前文档与被链接文档之间的关系；href:规定被链接文档的位置。
+    -->
+	<title>Love2Zou</title>
+	<meta name="author" content="love2zou">
+    <!--name:向搜索引擎说明你站点制作的作者。
+        content:与name属性相匹配的内容。
+    -->
+	<meta name="description" content="My Personal Learning Experience">
+    <!--向搜索引擎说明你站点的主要内容-->
+	<meta name="keywords" content="Stack Problems, jekyll, ruby, python, django, bash, raspberry, others, security, codefights">
+    <!--向搜索引擎说明你网页内容的关键字-->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="feed.xml">
+    <!--告诉支持订阅rss的浏览器该网站的rss地址是什么。
+        Rss地址：站点用来和其他站点之间共享内容的一种简易方式（也叫聚合内容），
+        通常被用于新闻和其他按顺序排列的网站，例如Blog。作用用于订阅Blog或者新闻。
+        Xml:Extensible Markup Language的简写，一种扩展性标识语言。-->
+	<meta content="Facebook numeric ID" property="fb:app_id">
+    <!---->
+    <!--Meta Property=og标签,og是一种新的HTTP头部标记，即Open Graph Protocol：
+        即这种协议可以让网页成为一个“富媒体对象”。用了Meta Property=og标签，
+        就是你同意了网页内容可以被其他社会化网站引用等，目前这种协议被SNS网站
+        如Fackbook、renren采用。为了提高站外内容的传播效率，2010年F8会议上Facebook
+        公布了一套开放内容协议(Open Graph Protocol)，任何网页只要遵守该协议，SNS就
+        能从页面上提取最有效的信息并呈现给用户。
+        参与到Open Graph Protocol的好处：
+    　　● 能够正确的分享您的内容到SNS网站。
+    　　● 帮助您的内容更有效的在SNS网络中传播。
+        Meta Property标签的应用：
+    　　● 按照您网页的类型，在<head>中添加入meta标签,并填上相应的内容。
+    　　● 如果一个页面上有多个需要标识出的内容怎么办？您可以重复meta标签，
+        将认为og:type 标签是每一段内容的起始处。
+        meta property=og代码的功能并不等同于网页的meta name标签，两者针对的对象不一致，功能不同。
+　　    如果网站上要使用Open Graph Protocol，那么，meta property=og和meta name、Title标签应同时赋值。
+    -->
+	<meta content="Problems Of Programming Language" property="og:site_name">
+	<meta content="Problems Of Programming Language" property="og:title">
+	<meta content="website" property="og:type">
+	<meta content="My Personal Learning Experience" property="og:description">
+	<meta content="https://love2zou.github.io/" property="og:url">
+	<meta content="static/img/avatar.jpg" property="og:image">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@love2zou">
+	<meta name="twitter:creator" content="@love2zou">
+	<meta name="twitter:title" content="Problems Of Programming Language">
+	<meta name="twitter:url" content="https://love2zou.github.io/">
+	<meta name="twitter:description" content="My Personal Learning Experience">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+	<link rel="stylesheet" href="static/css/syntax.css">
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,300,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="static/css/super-search.css">
+	<link rel="stylesheet" href="static/css/thickbox.css">
+	<link rel="stylesheet" href="static/css/projects.css">
+	<link rel="stylesheet" href="static/css/main.css">
+	<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;
+		i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)}, i[r].l=1*new Date();
+		a=s.createElement(o), m=s.getElementsByTagName(o)[0];
+		a.async=1;a.src=g;
+		m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-XXXXXXXX-Y', 'auto');
+		ga('send', 'pageview');
+	</script>
 </head>
 <body>
-<button id="btn1">把数据添加到 div 元素</button><br />
-<button id="btn2">获取已添加到 div 元素的数据</button>
-<div></div>
+	<div class="container">
+		<div class="col-sm-3">
+			<div class="fixed-condition">
+				<a href="/"><img class="profile-avatar" src="static/img/avatar.jpg" height="75px" width="75px"></a>
+				<h1 class="author-name">Love2Zou</h1>
+				<div class="profile-about"> I am a .Net Development Engineer in a company. Currently doing more in backend, focused in .Net .</div>
+				<div class="social">
+					<ul>
+						<li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/agusmakmun6" target="_blank"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/summonagus" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="#" target="_blank"><i class="fa fa-stack-exchange"></i></a></li>
+						<li><a href="https://github.com/agusmakmun" target="_blank"><i class="fa fa-github"></i></a></li>
+					</ul>
+				</div>
+				<div class="search" id="js-search">
+					<input type="text" placeholder="(sitemap)~$ type to search" class="search__input form-control" id="js-search__input">
+					<ul class="search__results" id="js-search__results"></ul>
+				</div>
+				<hr><ul class="sidebar-nav">
+				<strong>Navigation</strong>
+				<li><a href="/">Home</a></li>
+				<li><a class="about" href="/about/">About Me</a></li>
+				<li><a class="about" href="/projects/">My Projects</a></li>
+				<li><a class="about" href="/feed.xml">XML Feed</a></li>
+			</ul>
+			</div>
+		</div>
+		<div class="col-sm-8 col-offset-1 main-layout">
+			<div id="home">
+				<h1>Problems Of Programming Language</h1>
+				<hr><ol class="posts">
+				<li><a href="/python/django/2016/12/29/top-10-python-libraries-of-2016.html">Top 10 Python libraries of 2016</a> » <i><span>29 Dec 2016</span></i></li>
+				<li><a href="/python/codefights/2016/06/10/get-month-name-cf.html">get Month Name [CF]</a> » <i><span>10 Jun 2016</span></i></li>
+				<li><a href="/python/codefights/2016/06/10/find-the-number-of-even-digits-in-the-given-integer-cf.html">Find the number of even digits in the given integer [CF]</a> » <i><span>10 Jun 2016</span></i></li>
+				<li><a href="/python/codefights/2016/06/10/find-substrings-for-line-encoding-cf.html">Find Substrings for line Encoding [CF]</a> » <i><span>10 Jun 2016</span></i></li>
+				<li><a href="/python/codefights/2016/05/21/censorthis-censor-the-words-cf.html">CensorThis - Censor the words [CF]</a> » <i><span>21 May 2016</span></i></li>
+				<li><a href="/python/codefights/2016/05/21/notpaired-cf.html">notPaired [CF]</a> » <i><span>21 May 2016</span></i></li>
+				<li><a href="/python/codefights/2016/05/21/reverse-bit-cf.html">Reverse Bit [CF]</a> » <i><span>21 May 2016</span></i></li>
+				<li><a href="/python/security/2016/05/21/python-simple-ciphertext.html">Python Simple Ciphertext</a> » <i><span>21 May 2016</span></i></li>
+				<li><a href="/python/security/2016/05/21/python-crazy-decrypter-has-been-released.html">Python Crazy Decrypter has been Released</a> » <i><span>21 May 2016</span></i></li>
+				<li><a href="/others/2016/04/25/javascript-validator-for-input-number.html">Javascript Validator for Input Number</a> » <i><span>25 Apr 2016</span></i></li>
+				<li><a href="/django/raspberry/2016/04/20/setup-django-in-apache2-raspberry-pi.html">Setup Django in apache2 Raspberry Pi</a> » <i><span>20 Apr 2016</span></i></li>
+				<li><a href="/python/django/2016/04/20/adding-broadcast-mail-to-all-users-registered-inside-django-admin.html">Adding BroadCast Mail to All Users Registered inside Django Admin</a> » <i><span>20 Apr 2016</span></i></li>
+				<li><a href="/python/django/2016/04/20/custom-redirect-urls-django.html">Custom redirect urls django</a> » <i><span>20 Apr 2016</span></i></li>
+				<li><a href="/django/2016/04/19/replace-email-backend-gmail-to-postmarkapp-for-django.html">Replace backend gmail to Postmarkapp for Django</a> » <i><span>19 Apr 2016</span></i></li>
+				<li><a href="/bash/2016/04/19/download-recrusive-files-inside-index-of-in-linux-using-wget.html">Download recrusive files inside index-of in Linux using wget</a> » <i><span>19 Apr 2016</span></i></li>
+				<li><a href="/python/2016/04/19/python-permutations.html">Python Permutations</a> » <i><span>19 Apr 2016</span></i></li>
+				<li><a href="/bash/2016/04/19/simple-bash-scripting-for-login-before-open-the-terminal.html">Simple bash scripting for login before open the terminal</a> » <i><span>19 Apr 2016</span></i></li>
+				<li><a href="/python/bash/2016/04/19/remove-all-files-pyc-with-recrusive-method.html">Remove all files .pyc with recrusive method</a> » <i><span>19 Apr 2016</span></i></li>
+				<li><a href="/python/django/2016/04/18/email-backend-with-smtp-gmail.html">Email BackEnd with SMTP Gmail</a> » <i><span>18 Apr 2016</span></i></li>
+				<li><a href="/jekyll/2013/12/22/welcome-to-simply-grey.html">Welcome to Simply Grey</a> » <i><span>22 Dec 2013</span></i></li>
+			</ol>
+				<ul class="pagination pagination-sm">
+					<li class="disabled"><span aria-hidden="true">«</span></li>
+					<li><a href="/">First</a></li>
+					<li class="active"><a>1<span class="sr-only">(current)</span></a></li>
+					<li><a href="/page/2/">2</a></li>
+					<li><a href="/page/2/">Last</a></li>
+					<li><a href="/page/2/">»</a></li>
+				</ul>
+			</div>
+			<footer>
+				© Love2Zou -
+				<a href="https://github.com/love2zou">https://github.com/love2zou</a>
+				- Powered by Jekyll.
+				<div class="btn-github" style="float:right;">
+					<iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&amp;repo=agusmakmun.github.io&amp;type=star&amp;count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+					<iframe src="https://ghbtns.com/github-btn.html?user=agusmakmun&amp;repo=agusmakmun.github.io&amp;type=fork&amp;count=true" frameborder="0" scrolling="0" width="85" height="20px"></iframe>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+	<script src="static/js/super-search.js"></script>
+	<script src="static/js/thickbox-compressed.js"></script>
+	<script src="static/js/projects.js"></script>
+	<div class="_bd_ext_tip" style="visibility: hidden;">
+		<span class="_bd_ext_search">百度一下</span>
+		<span class="_bd_ext_open">打开链接</span>
+		<span class="_bd_ext_copy">复制</span>
+	</div>
 </body>
 </html>
